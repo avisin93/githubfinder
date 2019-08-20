@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 
 class UserItem extends Component {
-    constructor() {
-        super();
-    }
+    state = this.props.users;
     render() {
         return (
-            <div>
-                User Item
+            <div className='card text-center'>
+                {this.state.name}
             </div>
         )
     }
