@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class UserItem extends Component {
-    state = this.props.users;
-    render() {
-        return (
-            <div className='card text-center'>
-                {this.state.name}
-            </div>
-        )
-    }
+const UserItem = props => {
+    const { login } = props.users;
+
+    return (
+        <div className='card text-center'>
+            {login}
+        </div>
+    )
+
 }
 
-export default UserItem
+export default UserItem;

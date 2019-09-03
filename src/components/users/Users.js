@@ -1,51 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import UserItem from './UserItem';
 
-export default class Users extends Component {
-    state = {
-        users: [
-            {
-                id: '1',
-                name: 'Avinav'
-            },
-            {
-                id: '2',
-                name: 'Rushi'
-            }
-            ,
-            {
-                id: '3',
-                name: 'Akya'
-            },
-            {
-                id: '4',
-                name: 'Avinav'
-            },
-            {
-                id: '5',
-                name: 'Rushi'
-            }
-            ,
-            {
-                id: '6',
-                name: 'Akya'
-            }
+const Users = (props) => {
 
-        ]
-    }
-    render() {
-        return (
-            <div style={userStyle}>
-                {this.state.users.map(user =>
-                    <UserItem key={user.id} users={user} />
-                )}
-            </div>
-        )
+    return (
+        <div style={userStyle}>
+            {props.users.map(user =>
+                <UserItem key={user.id} users={user} />
+            )}
+        </div>
+    )
 
-    }
 
 }
 const userStyle = {
     display: 'flex',
     flexWrap: 'wrap'
 }
+export default Users;
