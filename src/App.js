@@ -11,21 +11,36 @@ class App extends Component {
     users: [],
     loading: false
   }
-  async componentDidMount() {
-    console.log(process.env.REACT_APP_GITHUB_CLIENT_SECRET);
-    this.setState({ loading: true })
-    const res = await axios.get(`https://api.github.com/users?client_id
+  // async componentDidMount() {
+  // this.setState({ loading: true })
+  // const res = await axios.get(`https://api.github.com/users?client_id
+  // =${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret
+  // =${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  // this.setState({ users: res.data, loading: false });
+
+  // }
+
+  // Search git hub users
+  searchUsers = async (text) => {
+    this.setState({
+      loading: true
+    })
+    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id
     =${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret
     =${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    this.setState({ users: res.data, loading: false })
-    console.log(res.data);
+    this.setState({ users: res.data.items, loading: false });
   }
+
+  clearUsers = (e) => {
+    this.setState({ users: [], loading: false });
+  }
+
   render() {
     return (
       <div className='App'>
         <Navbar />
         <div className='container'>
-          <Search />
+          <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
 
